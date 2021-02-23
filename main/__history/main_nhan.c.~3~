@@ -1,0 +1,11 @@
+#include <main_nhan.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      
+   }
+
+}

@@ -1,0 +1,85 @@
+#include <main.h>
+long xung = 0, xung1 = 0, speed_cnt = 0, speed_cnt1 = 0;
+float speed_rpm_current = 0, speed_rpm_current1 = 0;
+
+float setpoint = 500, error=0, error_pre=0,error_sum=0,
+error1=0, error_pre1=0,error_sum1=0;
+float PID_R, PID_L, kp=2.15,kd=0,ki=0.0001, PWM_R, PWM_L;
+
+#INT_EXT
+void ext_isr(VOID)
+{
+   IF (input_state (PIN_C3) )
+   xung++;
+
+   ELSE
+   xung--;
+}
+
+#INT_EXT1
+void ext1_isr(VOID)
+{
+   IF (input_state (PIN_C4) )
+   xung1++;
+
+   ELSE
+   xung1--;
+}
+
+#INT_TIMER1
+
+void delay_timer1(VOID) //delay 25ms
+{
+   speed_cnt = xung;
+   speed_cnt1 = xung1;
+   speed_rpm_current1 = speed_cnt1 * 6.6;
+   speed_rpm_current = speed_cnt * 6.6;
+   xung1 = 0;
+   xung = 0;
+   setup_timer_1 (T1_INTERNAL|T1_DIV_BY_8) ;
+   set_timer1 (49911) ;
+}
+
+void pid_right()
+{
+   error = setpoint - speed_rpm_current;
+   error_sum = error + error_sum;
+   PID_R = kp * error + kd * (error - error_pre) + ki * error_sum;
+     
+   PWM_R =  PID_R +  2*error_sensor;
+   IF (PWM_R > 124)
+      PWM_R = 124;
+
+   IF (PWM_R < 0)
+      PWM_R = 0;
+   error_pre = error;
+}
+
+void pid_left()
+{
+   error1 = setpoint - speed_rpm_current1;
+   error_sum1 = error1 + error_sum1;
+   PID_L = kp * error1 + kd * (error1 - error_pre1) + ki * error_sum1;
+   
+
+   PWM_L = PID_L - 2*error_sensor;
+   IF (PWM_L > 124)
+       PWM_L = 124;
+
+   IF (PWM_L < 0)
+       PWM_L = 0;
+   error_pre1 = error1;
+}
+
+void PID_control()
+{  
+   read_sensor();
+   pid_left();
+   pid_right();
+   set_pwm1_duty((INT16) PWM_R) ;
+   set_pwm2_duty ((INT16) PWM_L) ;
+   
+   //set_pwm1_duty ( (INT8) PID_R) ;
+   //sensor = input_b ();
+   //read_sensor () ;
+}

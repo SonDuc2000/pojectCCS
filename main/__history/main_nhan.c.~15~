@@ -1,0 +1,12 @@
+#include <main_nhan.h>
+unsigned CHAR sensor;
+void main()
+{
+   set_tris_a(0xff);
+   while(TRUE)
+   {
+      sensor = getc();
+      output_a(sensor);
+   }
+
+}

@@ -1,0 +1,13 @@
+#include <main_nhan.h>
+
+unsigned CHAR sensor;
+void main()
+{
+   setup_spi(SPI_MASTER|SPI_L_TO_H|SPI_CLK_DIV_16);
+   while(TRUE)
+   {
+      sensor = getc();
+      output_c(sensor);
+   }
+
+}

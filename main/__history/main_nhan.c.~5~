@@ -1,0 +1,11 @@
+#include <main_nhan.h>
+
+void main()
+{
+   set_tris_a(0);
+   while(TRUE)
+   {
+
+   }
+
+}

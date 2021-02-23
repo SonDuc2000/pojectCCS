@@ -1,0 +1,12 @@
+#include <16F877A.h>
+#device ADC=16
+
+#FUSES NOWDT                    //No Watch Dog Timer
+#FUSES NOBROWNOUT               //No brownout reset
+#FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O
+
+#use delay(crystal=20MHz)
+#use FIXED_IO( A_outputs=PIN_A5,PIN_A4,PIN_A3,PIN_A2,PIN_A1,PIN_A0 )
+#use FIXED_IO( C_outputs=PIN_C2,PIN_C1 )
+#use i2c(Slave,Fast,sda=PIN_C4,scl=PIN_C3,restart_wdt)
+

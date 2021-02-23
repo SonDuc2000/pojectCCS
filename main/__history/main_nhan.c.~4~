@@ -1,0 +1,18 @@
+#include <main_nhan.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      if(input_state(PIN_B0) == 0)
+      {
+         delay_us(20);
+         if(input_state(PIN_B0) == 0)
+         {
+            output_a(input_b());
+         }
+      }
+   }
+
+}

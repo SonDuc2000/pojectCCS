@@ -1,0 +1,12 @@
+#include <main_nhan.h>
+unsigned int sensor;
+void main()
+{
+   
+   while(TRUE)
+   {
+      sensor = getc();
+      output_c(sensor);
+   }
+
+}

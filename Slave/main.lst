@@ -1,0 +1,810 @@
+CCS PCM C Compiler, Version 5.025, 5967               25-Jan-21 15:55
+
+               Filename:   C:\Users\Dell\Desktop\NCKH\Test 3\Slave\main.lst
+
+               ROM used:   490 words (6%)
+                           Largest free fragment is 2048
+               RAM used:   5 (1%) at main() level
+                           19 (5%) worst case
+               Stack used: 4 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  01
+0001:  MOVWF  0A
+0002:  GOTO   1BE
+0003:  NOP
+.................... #include <main.h> 
+.................... #include <16F877A.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  28
+0009:  RETLW  0C
+000A:  RETLW  01
+000B:  RETLW  06
+000C:  DATA C8,32
+000D:  DATA 6C,36
+000E:  DATA 6F,00
+*
+0166:  MOVF   0B,W
+0167:  MOVWF  21
+0168:  BCF    0B.7
+0169:  BSF    03.5
+016A:  BSF    03.6
+016B:  BSF    0C.7
+016C:  BSF    0C.0
+016D:  NOP
+016E:  NOP
+016F:  BCF    03.5
+0170:  BCF    03.6
+0171:  BTFSC  21.7
+0172:  BSF    0B.7
+0173:  BSF    03.6
+0174:  MOVF   0C,W
+0175:  ANDLW  7F
+0176:  BTFSC  03.2
+0177:  GOTO   1BA
+0178:  BCF    03.6
+0179:  MOVWF  21
+017A:  BSF    03.6
+017B:  MOVF   0D,W
+017C:  BCF    03.6
+017D:  MOVWF  22
+017E:  BSF    03.6
+017F:  MOVF   0F,W
+0180:  BCF    03.6
+0181:  MOVWF  23
+0182:  MOVF   21,W
+0183:  MOVWF  24
+0184:  CALL   142
+0185:  MOVF   22,W
+0186:  BSF    03.6
+0187:  MOVWF  0D
+0188:  BCF    03.6
+0189:  MOVF   23,W
+018A:  BSF    03.6
+018B:  MOVWF  0F
+018C:  BCF    03.6
+018D:  MOVF   0B,W
+018E:  MOVWF  24
+018F:  BCF    0B.7
+0190:  BSF    03.5
+0191:  BSF    03.6
+0192:  BSF    0C.7
+0193:  BSF    0C.0
+0194:  NOP
+0195:  NOP
+0196:  BCF    03.5
+0197:  BCF    03.6
+0198:  BTFSC  24.7
+0199:  BSF    0B.7
+019A:  BSF    03.6
+019B:  RLF    0C,W
+019C:  RLF    0E,W
+019D:  ANDLW  7F
+019E:  BTFSC  03.2
+019F:  GOTO   1BA
+01A0:  BCF    03.6
+01A1:  MOVWF  21
+01A2:  BSF    03.6
+01A3:  MOVF   0D,W
+01A4:  BCF    03.6
+01A5:  MOVWF  22
+01A6:  BSF    03.6
+01A7:  MOVF   0F,W
+01A8:  BCF    03.6
+01A9:  MOVWF  23
+01AA:  MOVF   21,W
+01AB:  MOVWF  24
+01AC:  CALL   142
+01AD:  MOVF   22,W
+01AE:  BSF    03.6
+01AF:  MOVWF  0D
+01B0:  BCF    03.6
+01B1:  MOVF   23,W
+01B2:  BSF    03.6
+01B3:  MOVWF  0F
+01B4:  INCF   0D,F
+01B5:  BTFSC  03.2
+01B6:  INCF   0F,F
+01B7:  BCF    03.6
+01B8:  GOTO   166
+01B9:  BSF    03.6
+01BA:  BCF    03.6
+01BB:  BCF    0A.3
+01BC:  BCF    0A.4
+01BD:  GOTO   1E8 (RETURN)
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(crystal=20MHz) 
+*
+000F:  MOVLW  25
+0010:  MOVWF  04
+0011:  BCF    03.7
+0012:  MOVF   00,W
+0013:  BTFSC  03.2
+0014:  GOTO   022
+0015:  MOVLW  06
+0016:  MOVWF  78
+0017:  CLRF   77
+0018:  DECFSZ 77,F
+0019:  GOTO   018
+001A:  DECFSZ 78,F
+001B:  GOTO   017
+001C:  MOVLW  7B
+001D:  MOVWF  77
+001E:  DECFSZ 77,F
+001F:  GOTO   01E
+0020:  DECFSZ 00,F
+0021:  GOTO   015
+0022:  RETURN
+.................... #use FIXED_IO( A_outputs=PIN_A5,PIN_A4,PIN_A3,PIN_A2,PIN_A1,PIN_A0 ) 
+.................... #use FIXED_IO( C_outputs=PIN_C2,PIN_C1 ) 
+.................... #use i2c(Slave,Fast,sda=PIN_C4,scl=PIN_C3,restart_wdt) 
+....................  
+....................  
+.................... #include <lcd.h> 
+.................... #define _lcd_h_ 
+....................  
+....................  
+.................... #define NULL   0 
+....................  
+.................... void lcd_init(void);             // Ham dung de khoi dong C.LCD. 
+.................... byte lcd_read_byte(void);         // Ham xu ly doc thong tin (dang 8 bit) tu thong tin dang 4 bit tu C.LCD. 
+.................... byte lcd_read_nibble(void);         // Ham doc thong tin (dang 4 bit / nibble) tu C.LCD. 
+.................... void lcd_send_byte(byte address, byte n);   // Ham gui thong tin (byte) toi C.LCD tai dia chi (address). 
+.................... void lcd_send_nibble(byte n);      // Ham gui thong tin (dang 4 bit / nibble) sang C.LCD. 
+.................... void lcd_gotoxy(byte x, byte y);   // Ham thiet lap vi tri ghi tren C.LCD. 
+.................... char lcd_getc(byte x, byte y);      // Ham tra ve ky tu tai vi tri (x,y) tren C.LCD. 
+.................... void lcd_putc(char c);            // Ham se hien thi ky tu c tai vi tri ke tiep tren C.LCD. 
+.................... void lcd_clear(void); 
+.................... void lcd_puts(char *str); 
+.................... // Khai bao bien. 
+.................... // Dinh nghia cac thong so. 
+.................... #define LCD_RS_PIN         PIN_D1   // Cac ket noi C.LCD voi vi dieu khien. 
+.................... #define LCD_RW_PIN         PIN_D2 
+.................... #define LCD_ENABLE_PIN     PIN_D3 
+.................... #define LCD_DATA4          PIN_D4 
+.................... #define LCD_DATA5          PIN_D5 
+.................... #define LCD_DATA6          PIN_D6 
+.................... #define LCD_DATA7          PIN_D7  
+....................  
+.................... #define lcd_output_enable(x)   output_bit(LCD_ENABLE_PIN, x)   // Lenh dieu khien chan LCD_ENABLE_PIN. 
+.................... #define lcd_enable_tris()   output_drive(LCD_ENABLE_PIN) 
+....................  
+.................... #define lcd_output_rs(x)   output_bit(LCD_RS_PIN, x)   // Lenh dieu khien chan LCD_RS_PIN. 
+.................... #define lcd_rs_tris()      output_drive(LCD_RS_PIN) 
+....................  
+.................... #define lcd_output_rw(x)   output_bit(LCD_RW_PIN, x)   // Lenh dieu khien chan LCD_RW_PIN 
+.................... #define lcd_rw_tris()      output_drive(LCD_RW_PIN) 
+....................  
+.................... #define lcd_line_one   0x00    // Dia chi RAM C.LCD cho hang thu 1. 
+.................... #define lcd_line_two   0x40    // Dia chi RAM C.LCD cho hang thu 2. 
+.................... #define lcd_line_three   0x14 
+.................... #define lcd_line_four   0x54 
+.................... #define LCD_TYPE 0x02           // Thong tin cau hinh C.LCD: 0x00=5x7, 0x01=5x10, 0x02=2 lines 
+....................  
+.................... // Dinh nghia cac hang so. 
+.................... byte const LCD_INIT_STRING[4] = {0x28 | (LCD_TYPE << 2), 0x0C, 0x01, 0x06}; 
+....................         // Cac byte nay can thiet de gui toi C.LCD, dung de khoi dong cau hinh hoat dong cho C.LCD. 
+....................       // Byte 1: 0x20 | (LCD_TYPE << 2) - So bit du lieu giao tiep (DL), so dong hien thi (N), kieu ky tu (F). 
+....................       //         0 0 1 DL N F x x (DL: Data Length, N: Number Line, F: Font). 
+....................          // Truong hop 1: 0x20 - 4 bit / 1 dong / 5 x 7. 
+....................          // Truong hop 2: 0x24 - 4 bit / 1 dong / 5 x 10. 
+....................          // Truong hop 3: 0x28 - 4 bit / 2 dong / 5 x 7. 
+....................       // Byte 2: 0x0C - Dieu khien hien thi (Bat hien thi, tat con tro, tat nhap nhay con tro). 
+....................       //         0 0 0 0 1 D C B (D: Display, C: Cursor, B: Blink). 
+....................       // Byte 3: 0x01 - Xoa hien thi va tra con tro ve dau dong. 
+....................       // Byte 4: 0x06 - Dat che do dau vao (Che do tang dia chi, tat dich chuyen hien thi). 
+....................       //         0 0 0 0 0 1 I/D S (I/D: Increment/Decrement, S: Shift). 
+....................       // Byte 5: .... - Doi con tro / hien thi. 
+....................       //         0 0 0 1 S/C R/L x x (S/C: Screen/Cursor, R/L: Right/Left). 
+....................  
+.................... // *************************************************** 
+.................... void lcd_init(void)    // Ham dung de khoi dong C.LCD. 
+.................... { 
+.................... // Khai bao bien. 
+.................... byte i; 
+.................... // Dinh nghia ham. 
+.................... output_drive(LCD_DATA4);   // Thiet lap chan port (Data) o che do ngo ra. 
+*
+00DB:  BSF    03.5
+00DC:  BCF    08.4
+.................... output_drive(LCD_DATA5); 
+00DD:  BCF    08.5
+.................... output_drive(LCD_DATA6); 
+00DE:  BCF    08.6
+.................... output_drive(LCD_DATA7); 
+00DF:  BCF    08.7
+....................  
+.................... lcd_enable_tris();         // Thiet lap chan port (Control: EN, RS, RW) o che do ngo ra. 
+00E0:  BCF    08.3
+.................... lcd_rs_tris(); 
+00E1:  BCF    08.1
+.................... lcd_rw_tris(); 
+00E2:  BCF    08.2
+....................  
+.................... lcd_output_rs(0);         // RS = 0 - Databus = Bus lenh. 
+00E3:  BCF    03.5
+00E4:  BCF    08.1
+00E5:  BSF    03.5
+00E6:  BCF    08.1
+.................... lcd_output_rw(0);         // RW = 0 - Ghi thong tin vao C.LCD. 
+00E7:  BCF    03.5
+00E8:  BCF    08.2
+00E9:  BSF    03.5
+00EA:  BCF    08.2
+.................... lcd_output_enable(0);      // EN = 0 - Cam truy xuat C.LCD. 
+00EB:  BCF    03.5
+00EC:  BCF    08.3
+00ED:  BSF    03.5
+00EE:  BCF    08.3
+....................  
+.................... delay_ms(15);   // Tao thoi gian tre 15ms (Thoi gian de LCD tu reset khi moi duoc cap nguon). 
+00EF:  MOVLW  0F
+00F0:  BCF    03.5
+00F1:  MOVWF  25
+00F2:  CALL   00F
+....................  
+.................... for(i=1;i<=3;i++)         // Doan lenh khoi dong C.LCD o che do 8 bit duoc thuc hien 3 lan lien tiep 
+00F3:  MOVLW  01
+00F4:  MOVWF  21
+00F5:  MOVF   21,W
+00F6:  SUBLW  03
+00F7:  BTFSS  03.0
+00F8:  GOTO   101
+....................    {                  // tai thoi diem ban dau (de dam bao cho C.LCD hoat dong on dinh trong  
+....................    lcd_send_nibble(0x03);    // truong hop khi cung cap nguon cho C.LCD ma dien ap nguon tang len cham). 
+00F9:  MOVLW  03
+00FA:  MOVWF  2C
+00FB:  CALL   023
+....................    delay_ms(5);         // RS = 0, RW = 0, D7 - D4 = 0011 (0x03) -> DL = 1 (8 bit). 
+00FC:  MOVLW  05
+00FD:  MOVWF  25
+00FE:  CALL   00F
+00FF:  INCF   21,F
+0100:  GOTO   0F5
+....................    }                  // Do co BF (Busy Flag) chua kiem tra duoc trong thoi diem nay, nen phai  
+....................                      // thuc hien 3 lan (xem luu do khoi dong C.LCD cua nha san xuat). 
+....................  
+.................... lcd_send_nibble(0x02);      // Doan lenh khoi dong C.LCD o che do 4 bit. Tu luc nay thi 4 bit cao duoc ghi 
+0101:  MOVLW  02
+0102:  MOVWF  2C
+0103:  CALL   023
+....................                      // ra truoc tien, sau do la 4 bit thap. 
+....................                      // RS = 0, RW = 0, D7 - D4 = 0010 (0x02) -> DL = 0 (4 bit). 
+....................                      // Co BF (Busy Flag) co the bat dau kiem tra duoc tu luc nay. 
+....................  
+.................... for(i=0;i<=3;i++) 
+0104:  CLRF   21
+0105:  MOVF   21,W
+0106:  SUBLW  03
+0107:  BTFSS  03.0
+0108:  GOTO   112
+....................    lcd_send_byte(0,LCD_INIT_STRING[i]);   // Goi ham truyen thong tin (lenh) sang C.LCD. 
+0109:  MOVF   21,W
+010A:  CALL   004
+010B:  MOVWF  22
+010C:  CLRF   29
+010D:  MOVF   22,W
+010E:  MOVWF  2A
+010F:  CALL   084
+0110:  INCF   21,F
+0111:  GOTO   105
+0112:  BCF    0A.3
+0113:  BCF    0A.4
+0114:  GOTO   1DC (RETURN)
+.................... }                                 // Lenh: Thiet lap cau hinh hoat dong cho C.LCD. 
+....................  
+.................... // *************************************************** 
+.................... byte lcd_read_byte(void)   // Ham xu ly doc thong tin (dang 8 bit) tu thong tin dang 4 bit tu C.LCD. 
+.................... { 
+.................... // Khai bao bien. 
+.................... byte low,high; 
+.................... // Dinh nghia ham. 
+.................... output_float(LCD_DATA4);   // Thiet lap chan port o che do ngo vao. 
+*
+0087:  BSF    08.4
+.................... output_float(LCD_DATA5); 
+0088:  BSF    08.5
+.................... output_float(LCD_DATA6); 
+0089:  BSF    08.6
+.................... output_float(LCD_DATA7); 
+008A:  BSF    08.7
+....................  
+.................... lcd_output_rw(1);         // RW = 1 - Doc thong tin tu C.LCD. 
+008B:  BCF    03.5
+008C:  BSF    08.2
+008D:  BSF    03.5
+008E:  BCF    08.2
+....................                   // Tien hanh doc 4 bit cao cua thong tin tu C.LCD. 
+.................... delay_cycles(1);         // Tao tre 1 chu ky (t=1us voi fosc=4MHz). 
+008F:  NOP
+.................... lcd_output_enable(1);      // EN = 1 - Cho phep truy xuat C.LCD. 
+0090:  BCF    03.5
+0091:  BSF    08.3
+0092:  BSF    03.5
+0093:  BCF    08.3
+.................... delay_cycles(1);         // Tao tre 1 chu ky (t=1us voi fosc=4MHz). 
+0094:  NOP
+.................... high = lcd_read_nibble();   // Cat tam 4 bit du lieu (4 bit cao). 
+0095:  BCF    03.5
+0096:  CALL   053
+0097:  MOVF   78,W
+0098:  MOVWF  2C
+.................... lcd_output_enable(0);      // EN = 0 - Cam truy xuat C.LCD. 
+0099:  BCF    08.3
+009A:  BSF    03.5
+009B:  BCF    08.3
+....................                   // Tien hanh doc 4 bit thap cua thong tin tu C.LCD. 
+.................... delay_cycles(1);         // Tao tre 1 chu ky (t=1us voi fosc=4MHz). 
+009C:  NOP
+.................... lcd_output_enable(1);      // EN = 1 - Cho phep truy xuat C.LCD. 
+009D:  BCF    03.5
+009E:  BSF    08.3
+009F:  BSF    03.5
+00A0:  BCF    08.3
+.................... delay_cycles(1);         // Tao tre 1 chu ky (t=1us voi fosc=4MHz). 
+00A1:  NOP
+.................... low = lcd_read_nibble();   // Cat tam 4 bit du lieu (4 bit thap). 
+00A2:  BCF    03.5
+00A3:  CALL   053
+00A4:  MOVF   78,W
+00A5:  MOVWF  2B
+.................... lcd_output_enable(0);      // EN = 0 - Cam truy xuat C.LCD. 
+00A6:  BCF    08.3
+00A7:  BSF    03.5
+00A8:  BCF    08.3
+....................  
+.................... output_drive(LCD_DATA4);   // Thiet lap chan port o che do ngo ra. 
+00A9:  BCF    08.4
+.................... output_drive(LCD_DATA5); 
+00AA:  BCF    08.5
+.................... output_drive(LCD_DATA6); 
+00AB:  BCF    08.6
+.................... output_drive(LCD_DATA7); 
+00AC:  BCF    08.7
+....................  
+.................... return((high<<4) | low);   // Tra ve ket qua du lieu (dang 8 bit). 
+00AD:  BCF    03.5
+00AE:  SWAPF  2C,W
+00AF:  MOVWF  77
+00B0:  MOVLW  F0
+00B1:  ANDWF  77,F
+00B2:  MOVF   77,W
+00B3:  IORWF  2B,W
+00B4:  MOVWF  78
+.................... } 
+....................  
+.................... // *************************************************** 
+.................... byte lcd_read_nibble(void)   // Ham doc thong tin (dang 4 bit / nibble) tu C.LCD. 
+*
+0053:  CLRF   2D
+.................... { 
+.................... // Khai bao bien. 
+.................... byte n = 0x00;   // Mac dinh gia tri ban dau cho noi chua se thong tin. 
+.................... // Dinh nghia ham. 
+.................... n |= input(LCD_DATA4);         // Doc lan luot cac bit tu bus du lieu. 
+0054:  BSF    03.5
+0055:  BSF    08.4
+0056:  MOVLW  00
+0057:  BCF    03.5
+0058:  BTFSC  08.4
+0059:  MOVLW  01
+005A:  IORWF  2D,F
+.................... n |= input(LCD_DATA5) << 1; 
+005B:  BSF    03.5
+005C:  BSF    08.5
+005D:  MOVLW  00
+005E:  BCF    03.5
+005F:  BTFSC  08.5
+0060:  MOVLW  01
+0061:  MOVWF  77
+0062:  BCF    03.0
+0063:  RLF    77,F
+0064:  MOVF   77,W
+0065:  IORWF  2D,F
+.................... n |= input(LCD_DATA6) << 2; 
+0066:  BSF    03.5
+0067:  BSF    08.6
+0068:  MOVLW  00
+0069:  BCF    03.5
+006A:  BTFSC  08.6
+006B:  MOVLW  01
+006C:  MOVWF  77
+006D:  RLF    77,F
+006E:  RLF    77,F
+006F:  MOVLW  FC
+0070:  ANDWF  77,F
+0071:  MOVF   77,W
+0072:  IORWF  2D,F
+.................... n |= input(LCD_DATA7) << 3; 
+0073:  BSF    03.5
+0074:  BSF    08.7
+0075:  MOVLW  00
+0076:  BCF    03.5
+0077:  BTFSC  08.7
+0078:  MOVLW  01
+0079:  MOVWF  77
+007A:  RLF    77,F
+007B:  RLF    77,F
+007C:  RLF    77,F
+007D:  MOVLW  F8
+007E:  ANDWF  77,F
+007F:  MOVF   77,W
+0080:  IORWF  2D,F
+....................  
+.................... return(n);   // Tra ve ket qua doc duoc (data = 0000 xxxx). 
+0081:  MOVF   2D,W
+0082:  MOVWF  78
+0083:  RETURN
+.................... } 
+....................  
+.................... // *************************************************** 
+.................... void lcd_send_byte(byte address, byte n)   // Ham gui thong tin (byte) toi C.LCD tai dia chi (address). 
+.................... {                                 // address = 0: Lenh / 1: Du lieu. 
+....................                                  // byte = Thong tin can gui (8 bit). 
+.................... // Khai bao bien. 
+....................  
+.................... // Dinh nghia ham.   
+.................... lcd_output_rs(0);      // RS = 0 - Databus = Bus lenh. 
+0084:  BCF    08.1
+0085:  BSF    03.5
+0086:  BCF    08.1
+.................... while(bit_test(lcd_read_byte(),7));   // Cho Busy Flag = 0 (C.LCD da xu ly xong). 
+*
+00B5:  MOVF   78,W
+00B6:  MOVWF  2B
+00B7:  BTFSS  2B.7
+00B8:  GOTO   0BB
+00B9:  BSF    03.5
+00BA:  GOTO   087
+.................... lcd_output_rs(address);   // RS = address - Databus = Bus lenh/du lieu. 
+00BB:  MOVF   29,F
+00BC:  BTFSS  03.2
+00BD:  GOTO   0C0
+00BE:  BCF    08.1
+00BF:  GOTO   0C1
+00C0:  BSF    08.1
+00C1:  BSF    03.5
+00C2:  BCF    08.1
+.................... delay_cycles(1);      // Tao tre 1 chu ky (t=1us voi fosc=4MHz). 
+00C3:  NOP
+.................... lcd_output_rw(0);      // RW = 0 - Ghi thong tin vao C.LCD. 
+00C4:  BCF    03.5
+00C5:  BCF    08.2
+00C6:  BSF    03.5
+00C7:  BCF    08.2
+.................... delay_cycles(1);      // Tao tre 1 chu ky (t=1us voi fosc=4MHz). 
+00C8:  NOP
+.................... lcd_output_enable(0);   // EN = 0 - Cam truy xuat C.LCD. 
+00C9:  BCF    03.5
+00CA:  BCF    08.3
+00CB:  BSF    03.5
+00CC:  BCF    08.3
+.................... lcd_send_nibble(n >> 4);   // Goi ham truyen 4 bit cao sang C.LCD. 
+00CD:  BCF    03.5
+00CE:  SWAPF  2A,W
+00CF:  MOVWF  2B
+00D0:  MOVLW  0F
+00D1:  ANDWF  2B,F
+00D2:  MOVF   2B,W
+00D3:  MOVWF  2C
+00D4:  CALL   023
+.................... lcd_send_nibble(n & 0x0F);   // Goi ham truyen 4 bit thap sang C.LCD. 
+00D5:  MOVF   2A,W
+00D6:  ANDLW  0F
+00D7:  MOVWF  2B
+00D8:  MOVWF  2C
+00D9:  CALL   023
+00DA:  RETURN
+.................... } 
+....................  
+.................... // *************************************************** 
+.................... void lcd_send_nibble(byte n)   // Ham gui thong tin (dang 4 bit / nibble) sang C.LCD. 
+.................... {                        // n = Thong tin can gui. 4 bit can gui phai nam vi tri 4 bit thap. 
+.................... // Khai bao bien. 
+....................  
+.................... // Dinh nghia ham.  
+.................... output_bit(LCD_DATA4, bit_test(n, 0));   // Xuat lan luot cac bit len bus du lieu. 
+*
+0023:  BTFSC  2C.0
+0024:  GOTO   027
+0025:  BCF    08.4
+0026:  GOTO   028
+0027:  BSF    08.4
+0028:  BSF    03.5
+0029:  BCF    08.4
+.................... output_bit(LCD_DATA5, bit_test(n, 1)); 
+002A:  BCF    03.5
+002B:  BTFSC  2C.1
+002C:  GOTO   02F
+002D:  BCF    08.5
+002E:  GOTO   030
+002F:  BSF    08.5
+0030:  BSF    03.5
+0031:  BCF    08.5
+.................... output_bit(LCD_DATA6, bit_test(n, 2)); 
+0032:  BCF    03.5
+0033:  BTFSC  2C.2
+0034:  GOTO   037
+0035:  BCF    08.6
+0036:  GOTO   038
+0037:  BSF    08.6
+0038:  BSF    03.5
+0039:  BCF    08.6
+.................... output_bit(LCD_DATA7, bit_test(n, 3)); 
+003A:  BCF    03.5
+003B:  BTFSC  2C.3
+003C:  GOTO   03F
+003D:  BCF    08.7
+003E:  GOTO   040
+003F:  BSF    08.7
+0040:  BSF    03.5
+0041:  BCF    08.7
+....................      
+.................... delay_cycles(1);      // Tao tre 1 chu ky (t=1us voi fosc=4MHz). 
+0042:  NOP
+.................... lcd_output_enable(1);   // Tao xung ghi thong tin vao C.LCD. 
+0043:  BCF    03.5
+0044:  BSF    08.3
+0045:  BSF    03.5
+0046:  BCF    08.3
+.................... delay_us(2);         // Tao tre 2 chu ky (t=2us voi fosc=4MHz). 
+0047:  MOVLW  02
+0048:  MOVWF  77
+0049:  DECFSZ 77,F
+004A:  GOTO   049
+004B:  GOTO   04C
+004C:  NOP
+.................... lcd_output_enable(0);   // Tao xung ghi thong tin vao LCD - EN = 1->0 (High to Low). 
+004D:  BCF    03.5
+004E:  BCF    08.3
+004F:  BSF    03.5
+0050:  BCF    08.3
+0051:  BCF    03.5
+0052:  RETURN
+.................... } 
+....................  
+.................... // *************************************************** 
+.................... void lcd_gotoxy(byte x, byte y)   // Ham thiet lap vi tri ghi tren C.LCD (Goc tren ben trai co toa do la 1,1). 
+.................... { 
+.................... // Khai bao bien. 
+.................... byte address; 
+.................... // Dinh nghia ham.   
+.................... if(y==1)               // Kiem tra vi tri truy xuat thuoc hang 2. 
+*
+011F:  DECFSZ 26,W
+0120:  GOTO   123
+....................    address=lcd_line_one;      // Nap dia chi RAM cua hang 2.  
+0121:  CLRF   27
+0122:  GOTO   137
+.................... else if(y==2)      // Neu vi tri truy xuat thuoc hang 1. 
+0123:  MOVF   26,W
+0124:  SUBLW  02
+0125:  BTFSS  03.2
+0126:  GOTO   12A
+....................    address=lcd_line_two;      // Nap dia chi RAM cua hang 1. 
+0127:  MOVLW  40
+0128:  MOVWF  27
+0129:  GOTO   137
+.................... else if(y==3) 
+012A:  MOVF   26,W
+012B:  SUBLW  03
+012C:  BTFSS  03.2
+012D:  GOTO   131
+....................    address=lcd_line_three;      
+012E:  MOVLW  14
+012F:  MOVWF  27
+0130:  GOTO   137
+.................... else if(y==4) 
+0131:  MOVF   26,W
+0132:  SUBLW  04
+0133:  BTFSS  03.2
+0134:  GOTO   137
+....................    address=lcd_line_four;    
+0135:  MOVLW  54
+0136:  MOVWF  27
+....................  
+.................... address+=x-1;               // Ghep dia chi cot vao dia chi tong quat (address). address = address + (x-1).       
+0137:  MOVLW  01
+0138:  SUBWF  25,W
+0139:  ADDWF  27,F
+....................                         // Ta qui uoc: Goc tren ben trai co toa do la 1,1 -> Cot dau tien la Cot 1 
+....................                         // (x-1) vi C.LCD qui uoc cot dau tien co dia chi la 0. 
+.................... lcd_send_byte(0,0x80|address);   // Goi ham truyen thong tin (lenh) sang C.LCD. 
+013A:  MOVF   27,W
+013B:  IORLW  80
+013C:  MOVWF  28
+013D:  CLRF   29
+013E:  MOVF   28,W
+013F:  MOVWF  2A
+0140:  CALL   084
+0141:  RETURN
+.................... }                        // Lenh: Thiet lap dia chi DDRAM cua C.LCD (addresss).    
+....................  
+.................... // *************************************************** 
+.................... char lcd_getc(byte x, byte y)   // Ham tra ve ky tu tai vi tri (x,y) tren C.LCD. 
+.................... { 
+.................... // Khai bao bien. 
+.................... char value; 
+.................... // Dinh nghia ham.   
+.................... lcd_gotoxy(x,y);            // Xac dinh toa do C.LCD can truy xuat. 
+.................... while(bit_test(lcd_read_byte(),7));   // Cho Busy Flag = 0 (C.LCD da xu ly xong). 
+.................... lcd_output_rs(1);         // RS = 1 - Databus = Bus du lieu. 
+.................... value = lcd_read_byte();   // Doc ve tu C.LCD. 
+.................... lcd_output_rs(0);         // RS = 0 - Databus = Bus lenh. 
+....................  
+.................... return(value);      // Tra ve ma ky tu tai toa do yeu cau. 
+.................... } 
+....................  
+.................... // *************************************************** 
+.................... void lcd_putc(char c)   // Ham se hien thi ky tu c tai vi tri ke tiep tren C.LCD. 
+.................... { 
+.................... // Khai bao bien. 
+....................  
+.................... // Dinh nghia ham.  
+.................... switch (c) 
+0142:  MOVF   24,W
+0143:  XORLW  0C
+0144:  BTFSC  03.2
+0145:  GOTO   14D
+0146:  XORLW  06
+0147:  BTFSC  03.2
+0148:  GOTO   155
+0149:  XORLW  02
+014A:  BTFSC  03.2
+014B:  GOTO   15B
+014C:  GOTO   160
+....................    { 
+....................    case '\f':     // Chuc nang xoa hien thi. 
+....................       lcd_send_byte(0,0x01);   // Goi ham truyen thong tin (lenh) sang C.LCD. 
+014D:  CLRF   29
+014E:  MOVLW  01
+014F:  MOVWF  2A
+0150:  CALL   084
+....................       delay_ms(2);         // Lenh: Xoa hien thi tren man hinh C.LCD (0x01). 
+0151:  MOVLW  02
+0152:  MOVWF  25
+0153:  CALL   00F
+....................       break; 
+0154:  GOTO   165
+....................    case '\n':       // Chuc nang bat dau hang thu 2. 
+....................       lcd_gotoxy(1,0x02);     // Goi ham truyen thong tin (du lieu) sang C.LCD.    
+0155:  MOVLW  01
+0156:  MOVWF  25
+0157:  MOVLW  02
+0158:  MOVWF  26
+0159:  CALL   11F
+....................       break; 
+015A:  GOTO   165
+....................     case '\b':       // Chuc nang lui ve 1 vi tri. 
+....................       lcd_send_byte(0,0x10);    // Goi ham truyen thong tin (lenh) sang C.LCD.  
+015B:  CLRF   29
+015C:  MOVLW  10
+015D:  MOVWF  2A
+015E:  CALL   084
+....................       break;               // Lenh: Doi con tro sang trai (0x10). 
+015F:  GOTO   165
+....................    default:       // Chuc nang hien thi ky tu c tai vi tri ke tiep tren C.LCD. 
+....................       lcd_send_byte(1,c);     // Goi ham truyen thong tin (du lieu) sang C.LCD. 
+0160:  MOVLW  01
+0161:  MOVWF  29
+0162:  MOVF   24,W
+0163:  MOVWF  2A
+0164:  CALL   084
+....................       break; 
+....................    } 
+0165:  RETURN
+.................... }    
+....................  
+.................... void lcd_clear(void) 
+.................... { 
+....................    lcd_send_byte(0,0x01);   // Goi ham truyen thong tin (lenh) sang C.LCD. 
+*
+0115:  CLRF   29
+0116:  MOVLW  01
+0117:  MOVWF  2A
+0118:  CALL   084
+....................    delay_ms(2);         // Lenh: Xoa hien thi tren man hinh C.LCD (0x01).    
+0119:  MOVLW  02
+011A:  MOVWF  25
+011B:  CALL   00F
+011C:  BCF    0A.3
+011D:  BCF    0A.4
+011E:  GOTO   1DD (RETURN)
+.................... } 
+....................  
+.................... void lcd_puts(char *str) 
+.................... { 
+....................    while(*str!=NULL) 
+....................    { 
+....................       lcd_putc(*str); 
+....................       str++; 
+....................    } 
+.................... } 
+.................... // ***************************************************    
+....................  
+....................  
+.................... void main() 
+*
+01BE:  MOVF   03,W
+01BF:  ANDLW  1F
+01C0:  MOVWF  03
+01C1:  MOVLW  F9
+01C2:  BSF    03.5
+01C3:  MOVWF  07
+01C4:  MOVWF  07
+01C5:  CLRF   13
+01C6:  MOVLW  36
+01C7:  BCF    03.5
+01C8:  MOVWF  14
+01C9:  BSF    03.5
+01CA:  BSF    11.0
+01CB:  BSF    1F.0
+01CC:  BSF    1F.1
+01CD:  BSF    1F.2
+01CE:  BCF    1F.3
+01CF:  MOVLW  07
+01D0:  MOVWF  1C
+01D1:  BCF    03.7
+.................... { 
+....................    setup_timer_2(T2_DIV_BY_16,255,1);      //819 us overflow, 819 us interrupt 
+01D2:  MOVLW  00
+01D3:  MOVWF  78
+01D4:  IORLW  06
+01D5:  BCF    03.5
+01D6:  MOVWF  12
+01D7:  MOVLW  FF
+01D8:  BSF    03.5
+01D9:  MOVWF  12
+....................     
+....................    lcd_init(); 
+01DA:  BCF    03.5
+01DB:  GOTO   0DB
+....................    lcd_clear(); 
+01DC:  GOTO   115
+....................  
+....................    while(TRUE) 
+....................    { 
+....................       lcd_gotoxy(1,1); 
+01DD:  MOVLW  01
+01DE:  MOVWF  25
+01DF:  MOVWF  26
+01E0:  CALL   11F
+....................       printf(lcd_putc, "Hello"); 
+01E1:  MOVLW  0C
+01E2:  BSF    03.6
+01E3:  MOVWF  0D
+01E4:  MOVLW  00
+01E5:  MOVWF  0F
+01E6:  BCF    03.6
+01E7:  GOTO   166
+01E8:  GOTO   1DD
+....................    } 
+....................  
+.................... } 
+01E9:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F32   HS NOWDT PUT NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

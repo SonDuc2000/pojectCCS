@@ -1,0 +1,8 @@
+#include <16F687.h>
+#device ADC=16
+
+#FUSES NOWDT                    //No Watch Dog Timer
+#FUSES NOBROWNOUT               //No brownout reset
+
+#use delay(crystal=20000000)
+#use RS232(UART1,baud=9600,parity=N,bits=8,stream=DEBUG_PORT,errors)//Khai bao su dung uart cung
